@@ -1,0 +1,13 @@
+Tutorias base
+
+Base do projeto Plura Saas com bun, stripe, shadcn ui, tailwind
+  https://youtu.be/6omuUOZcWL0?si=YZqBj1vhba0RIAwx&t=1040
+
+1 - overview shadcn ui tailwind 
+  https://youtu.be/gjTxJT0WMiw?si=QezZGU1SP20gR6Qq&t=311
+
+2 - overview radix, onde shadcn ui se inspirou
+  https://blog.logrocket.com/radix-ui-adoption-guide/
+
+3 - aplicação de radix com stitches
+  https://youtu.be/c_hrvOaZRNo?si=sKDeqiGIM2-PjqZV&t=2

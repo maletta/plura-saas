@@ -1,0 +1,15 @@
+1 - Bun
+  É utilizado bun como plataforma para gerenciamento de pacotes do projeto
+
+2 - É utilizado next 14 com biblioteca principal front end
+bunx create-next-app@latest .
+
+3 - É utilizado tailwind css para estilização dos componentes de design e tema da aplicação
+
+3 - É utilizado uploadthing para gerenciamento de arquivos
+https://uploadthing.com/dashboard/
+
+4 - É utilizado shadcn ui para criar componentes de design da aplicação
+https://ui.shadcn.com/
+
+

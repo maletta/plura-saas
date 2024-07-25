@@ -11,3 +11,5 @@ Base do projeto Plura Saas com bun, stripe, shadcn ui, tailwind
 
 3 - aplicação de radix com stitches
   https://youtu.be/c_hrvOaZRNo?si=sKDeqiGIM2-PjqZV&t=2
+
+  

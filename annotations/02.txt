@@ -12,4 +12,21 @@ https://uploadthing.com/dashboard/
 4 - É utilizado shadcn ui para criar componentes de design da aplicação
 https://ui.shadcn.com/
 
+bunx --bun shadcn-ui@latest init add 
+
+opções
+  typescript
+  base color default
+  css file dir: src/app/globals.css
+  css variables: yes
+  tailwind prefix: leave blank if not
+  tailwind config: talwind.config.ts
+  tailwind import alias for components: @/components
+  import alias for utils: @/lib/utils
+  react server components: yes
+  write configuration to components.json: yes
+  
+
+
+
 

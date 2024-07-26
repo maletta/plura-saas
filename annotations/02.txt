@@ -1,3 +1,7 @@
+Github do projeto do instrutor
+https://github.com/webprodigies/plura-production/tree/main
+
+
 1 - Bun
   É utilizado bun como plataforma para gerenciamento de pacotes do projeto
 
@@ -6,15 +10,26 @@ bunx create-next-app@latest .
 
 3 - É utilizado tailwind css para estilização dos componentes de design e tema da aplicação
 
-3 - É utilizado uploadthing para gerenciamento de arquivos
-https://uploadthing.com/dashboard/
+4 - É utilizado uploadthing para gerenciamento de arquivos
+  https://uploadthing.com/dashboard/
 
-4 - É utilizado shadcn ui para criar componentes de design da aplicação
+  instalar uploadthing como dependência do projeto
+
+  bun add uploadthing @uploadthing/react
+
+  definir as chaves de uploadthing no projeto
+
+  UPLOADTHING_SECRET=
+  UPLOADTHING_APP_ID=
+
+  aplicar a função withUt dentro de tailwind.config.ts
+
+5 - É utilizado shadcn ui para criar componentes de design da aplicação
 https://ui.shadcn.com/
 
 bunx --bun shadcn-ui@latest init add 
 
-opções
+opções de inialização e configuração do shadcn ui
   typescript
   base color default
   css file dir: src/app/globals.css
@@ -25,8 +40,24 @@ opções
   import alias for utils: @/lib/utils
   react server components: yes
   write configuration to components.json: yes
+
+
+instalando componentes no ambiente configurado acima:
+
+bunx --bun shadcn-ui@latest add 
+
+6 - É utilizado clerk para fazer autenticação
+https://clerk.com/
+
+  criamos uma aplicação no clerk e copiamos as chaves geradas para a aplicação:
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+    CLERK_SECRET_KEY
   
+  em seguida, iremos instalar o sdk de temas de cores do clerk
+    bun add @clerk/themes
+  
+  em seguida vamos instalar a biblioteca de autenticação do clerk
+    bun add @clerk/nextjs
 
-
-
-
+7 - É utilizado a ferramenta de gradient.page pra montar um esquema de cores para shadcn ui
+https://gradient.page/tools/shadcn-ui-theme-generator

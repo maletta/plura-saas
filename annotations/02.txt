@@ -59,5 +59,12 @@ https://clerk.com/
   em seguida vamos instalar a biblioteca de autenticação do clerk
     bun add @clerk/nextjs
 
+  também criaremos um arquivo chamado middleware na pasta src. Esse arquivo middleware é usado pelo clerk
+  para controlar quais rotas serão públicas e quais rotas serão autenticadas e o clerk fará  
+  o redirecionamento com base nessas informações e com base nas variáveis de ambiente definidas para redirecionamento
+
 7 - É utilizado a ferramenta de gradient.page pra montar um esquema de cores para shadcn ui
 https://gradient.page/tools/shadcn-ui-theme-generator
+
+8 - É utilizado bi.ibelick para conseguir background customizados para a aplicação com tailwind ou vanilla css
+  https://bg.ibelick.com/   

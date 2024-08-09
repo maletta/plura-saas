@@ -1,5 +1,4 @@
-import Navigation from "@/components/site/Navigation";
-import React, { type PropsWithChildren } from "react";
+import React, { PropsWithChildren } from "react";
 import { ClerkProvider } from "@clerk/nextjs";
 import {
   dark
@@ -12,10 +11,7 @@ const Layout = ({ children }: PropsWithChildren) => {
         baseTheme
           : dark
       }}>
-      <main className="h-full">
-        <Navigation />
-        {children}
-      </main>
+      {children}
     </ClerkProvider>
 
   )

@@ -1,0 +1,25 @@
+Sobre a navegação
+
+
+Tudo gira em torno do arquivo de middleware.
+
+1 - Subdmain exists?
+
+    yes:
+      Send user to [domain]/[path_id] along with search params
+      (enviar o usuário junto dos parâmetros de busca)
+
+    no: 
+      2 - Is url sign ou sign up?
+        yes: rewrite to /agency/sign-in
+
+        no:
+          3 - Is the path name / or /site?
+
+          yes: rewrite to /site because they want to access the website
+
+          no: 
+            4 - Trying to access dashboard ?
+            
+            yes: rewrite to path with the search params
+

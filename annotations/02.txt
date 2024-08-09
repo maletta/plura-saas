@@ -68,3 +68,15 @@ https://gradient.page/tools/shadcn-ui-theme-generator
 
 8 - É utilizado bi.ibelick para conseguir background customizados para a aplicação com tailwind ou vanilla css
   https://bg.ibelick.com/   
+
+9 - É utilizado prisma como gerenciador de banco de dados com typescript
+https://bun.sh/guides/ecosystem/prisma
+
+// instalar prisma e criar o arquivo de definição do banco de dados
+bun add @prisma/client
+bunx prisma init --datasource-provider mysql
+
+set env DATABASE_URL
+
+// gerar entidades no banco de dados, mas precisa de modelos de entidades criadas no typescript
+bunx prisma generate

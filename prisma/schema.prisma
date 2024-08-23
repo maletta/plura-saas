@@ -78,6 +78,7 @@ model User {
   @@index([agencyId])
 }
 
+//Quem pode acessar (User) e qual conta ele pode acessar (SubAccount)
 model Permissions {
   id           String     @id @default(uuid())
   email        String
@@ -90,6 +91,7 @@ model Permissions {
   @@index([email])
 }
 
+// tem customerId porque paragá taxas para nós
 model Agency {
   id                  String                @id @default(uuid())
   connectionAccountId String?               @default("")
@@ -116,6 +118,8 @@ model Agency {
   AddOns              AddOns[] // Serviços a mais na subscricção
 }
 
+// não tem customerId porque não paragá taxas para nós
+// Funnels são basicamente os websites, SubAccount terão vários websites
 model SubAccount {
   id               String                    @id @default(uuid())
   connectAccountId String?                   @default("")
@@ -147,6 +151,7 @@ model SubAccount {
   @@index([agencyId])
 }
 
+// Tag são assinadas para os Ticket, para Notification de SubAccount
 model Tag {
   id           String   @id @default(uuid())
   name         String
@@ -272,6 +277,7 @@ model Action {
   @@index([automationId])
 }
 
+// São basicamente os leads? para as SubAccount
 model Contact {
   id           String   @id @default(uuid())
   name         String
@@ -286,6 +292,7 @@ model Contact {
   @@index([subAccountId])
 }
 
+// onde são armazenadas as medias ?
 model Media {
   id           String     @id @default(uuid())
   type         String?
@@ -299,6 +306,7 @@ model Media {
   @@index([subAccountId])
 }
 
+// Funnel é basicamente um website e pertence a uma SubAccount
 model Funnel {
   id            String       @id @default(uuid())
   name          String
@@ -389,6 +397,7 @@ model Invitation {
   @@index([agencyId])
 }
 
+// Pertence a uma Agency ou a uma SubAccount
 model Notification {
   id           String  @id @default(uuid())
   notification String
@@ -413,6 +422,7 @@ enum Plan {
   price_1OYxkqFj9oKEERu1KfJGWxgN
 }
 
+// Subscrition é para propostas do stripe, se um usuário está em um plano pago ou gratuito
 model Subscription {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())

@@ -80,3 +80,15 @@ set env DATABASE_URL
 
 // gerar entidades no banco de dados, mas precisa de modelos de entidades criadas no typescript
 bunx prisma generate
+
+// bunx prisma db push
+para enviar a configuração do do arquivo schema.prisma ao banco de dados e criar as tabelas e seus relacionamentos
+
+  relationMode: "prisma" "foreignKey"
+    prisma - não cria chaves estrangeiras, não cria index automaticamente para propriedades de chaves estrangeiras, necessáio utilizar @@index manualmente
+
+    foreignKey - cria chaves estrangeiras e index automaticamente pra chave estrangeira
+
+// bunx prisma studio
+abre um client que sgbd para visualizar suas entidades
+

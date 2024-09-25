@@ -2,15 +2,40 @@
 
 import { clerkClient, currentUser } from "@clerk/nextjs/server"
 import { db } from "./db";
-import { Agency, Plan, User, } from "@prisma/client";
+import { Agency, AgencySidebarOption, Plan, Prisma, SubAccount, SubAccountSidebarOption, User, } from "@prisma/client";
 import { redirect } from "next/navigation";
 import * as constants from "./constants"
-import Constants from "@/constants/constants";
 
-export const getAuthUserDetails = async () => {
+export type IGetAuthUserDetails = Prisma.UserGetPayload<{
+  include: {
+    Agency: {
+      include: {
+        SidebarOption: true,
+        SubAccount: {
+          include: {
+            SidebarOption: true
+          }
+        }
+      }
+    },
+    Permissions: true,
+  }
+}>;
+
+type IGetAuthUserDetailsV2 = User & {
+  Agency: (Agency & {
+    SidebarOption: AgencySidebarOption[];
+    SubAccount: (SubAccount & {
+      SidebarOption: SubAccountSidebarOption[];
+    })[];
+  }) | null; // A relação com Agency pode ser null
+  Permissions: Permissions[];
+};
+
+export const getAuthUserDetails = async (): Promise<IGetAuthUserDetails | null> => {
   const user = await currentUser();
   if (!user) {
-    return;
+    return null;
   }
 
   const userData = await db.user.findUnique({
@@ -281,6 +306,9 @@ export const upsertAgency = async (agency: Agency, price?: Plan) => {
           ]
         }
       }
-    })
+    });
+    return agencyDetails;
+  } catch (error) {
+    console.log(error)
   }
 }

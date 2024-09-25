@@ -20,7 +20,7 @@ const FileUpload = ({ apiEndpoint, onChange, value }: IFileUpload) => {
         <div className='relative w-40 h-40'>
           <Image src={value}
             alt='uploaded image'
-            className='object-container'
+            className='object-contain'
             fill
           />
         </div>

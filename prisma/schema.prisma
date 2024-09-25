@@ -93,29 +93,29 @@ model Permissions {
 
 // tem customerId porque paragá taxas para nós
 model Agency {
-  id                  String                @id @default(uuid())
-  connectionAccountId String?               @default("")
-  customerId          String                @default("")
-  name                String
-  agencyLogo          String                @db.Text
-  companyEmail        String                @db.Text
-  companyPhone        String                @db.Text
-  whiteLabel          Boolean               @default(true)
-  address             String
-  city                String
-  zipCode             String
-  state               String
-  country             String
-  goal                Int                   @default(5)
-  users               User[]
-  createdAt           DateTime              @default(now())
-  updatedAt           DateTime              @updatedAt
-  SubAccount          SubAccount[]
-  SidebarOption       AgencySidebarOption[] // controlar quais funções podem aparecer na sidebar
-  Invitation          Invitation[] // manter rastreio dos convites
-  Notification        Notification[]
-  Subscription        Subscription?
-  AddOns              AddOns[] // Serviços a mais na subscricção
+  id               String                @id @default(uuid())
+  connectAccountId String?               @default("")
+  // customerId          String                @default("")
+  name             String
+  agencyLogo       String                @db.Text
+  companyEmail     String                @db.Text
+  companyPhone     String                @db.Text
+  whiteLabel       Boolean               @default(true)
+  address          String
+  city             String
+  zipCode          String
+  state            String
+  country          String
+  goal             Int                   @default(5)
+  users            User[]
+  createdAt        DateTime              @default(now())
+  updatedAt        DateTime              @updatedAt
+  SubAccount       SubAccount[]
+  SidebarOption    AgencySidebarOption[] // controlar quais funções podem aparecer na sidebar
+  Invitation       Invitation[] // manter rastreio dos convites
+  Notification     Notification[]
+  Subscription     Subscription?
+  AddOns           AddOns[] // Serviços a mais na subscricção
 }
 
 // não tem customerId porque não paragá taxas para nós

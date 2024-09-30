@@ -2,7 +2,7 @@
 
 import { clerkClient, currentUser } from "@clerk/nextjs/server"
 import { db } from "./db";
-import { Agency, AgencySidebarOption, Plan, Prisma, SubAccount, SubAccountSidebarOption, User, } from "@prisma/client";
+import { Agency, AgencySidebarOption, Plan, Prisma, Role, SubAccount, SubAccountSidebarOption, User, } from "@prisma/client";
 import { redirect } from "next/navigation";
 import * as constants from "./constants"
 
@@ -21,6 +21,7 @@ export type IGetAuthUserDetails = Prisma.UserGetPayload<{
     Permissions: true,
   }
 }>;
+
 
 type IGetAuthUserDetailsV2 = User & {
   Agency: (Agency & {
@@ -312,3 +313,24 @@ export const upsertAgency = async (agency: Agency, price?: Plan) => {
     console.log(error)
   }
 }
+
+export type IGetNotificationAndUser = Prisma.NotificationGetPayload<{
+  include: {
+    User: true
+  }
+}>
+
+export const getNotificationAndUser = async (agencyId: string): Promise<IGetNotificationAndUser[] | undefined> => {
+  try {
+    const response = await db.notification.findMany({
+      where: { agencyId },
+      include: { User: true },
+      orderBy: { createdAt: 'desc' },
+    });
+
+    return response;
+  } catch (error) {
+    console.log(error);
+    return undefined;
+  }
+};

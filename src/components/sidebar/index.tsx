@@ -39,8 +39,11 @@ const Sidebar = async ({ id, type }: ISidebarProps) => {
 
 
   return <>
-    <MenuOptions defaultOpen={true} details={details} id={id} sidebarLogo={sideBarLogo} sidebarOpt={sidebarOpt} subAccount={subaccounts} user={user} />
-    <MenuOptions defaultOpen={false} details={details} id={id} sidebarLogo={sideBarLogo} sidebarOpt={sidebarOpt} subAccount={subaccounts} user={user} />
+    {/* web */}
+    <MenuOptions defaultOpen={true} details={details} id={id} sidebarLogo={sideBarLogo} sidebarOpt={sidebarOpt} subAccounts={subaccounts} user={user} />
+    {/* mobile */}
+    <MenuOptions defaultOpen={false} details={details} id={id} sidebarLogo={sideBarLogo} sidebarOpt={sidebarOpt} subAccounts={subaccounts} user={user} />
+
   </>
 }
 

@@ -1,7 +1,11 @@
+import BlurPage from "@/components/global/blur-page";
+import InfoBar from "@/components/global/infobar";
 import Sidebar from "@/components/sidebar";
 import Unauthorized from "@/components/unauthorized";
 import { getNotificationAndUser, IGetNotificationAndUser, verifyAndAcceptInvitation } from "@/lib/queries";
+import { NotificationWithUser } from "@/lib/types";
 import { currentUser } from "@clerk/nextjs/server";
+import { sub } from "date-fns";
 import { redirect } from "next/navigation";
 import React, { PropsWithChildren } from "react";
 
@@ -38,7 +42,16 @@ const Layout = async ({ children, params }: ILayoutProps) => {
       id={params.agencyId}
       type="agency"
     />
-    <div className="md:pl-[300px]">{children}</div>
+    <div className="md:pl-[300px]">
+      <InfoBar
+        notifications={allNoti}
+      />
+      <div className="relative">
+        <BlurPage>
+          {children}
+        </BlurPage>
+      </div>
+    </div>
   </div>
 }
 

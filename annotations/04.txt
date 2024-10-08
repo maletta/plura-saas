@@ -18,3 +18,12 @@ HOW TO FIX: sincronizar horário do windows com registros de servidores de horá
 https://suporte.ivancarlos.com.br/hc/pt-br/articles/22313315021197-Rel%C3%B3gio-do-sistema-operacional-n%C3%A3o-sincroniza-automaticamente-em-conex%C3%B5es-Vivo
 
 ------------------
+
+
+BUG: Componente CommandItem não interage com ações do mouse de click e hover.
+
+Onde: src/components/sidebar/menu-options.tsx
+
+HOW TO FIX: Componente Command do shadcn ui utiliza a biblioteca cmdk que é instalada automaticamente na versão 1.0.0, é preciso dar downgrade para a versão 0.2.0 que é a versão utilizada no github do shadcn ui.
+
+-------------------

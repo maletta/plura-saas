@@ -4,7 +4,7 @@ Github do projeto do instrutor
 https://github.com/webprodigies/plura-production/tree/main
 
 Base do projeto Plura Saas com bun, stripe, shadcn ui, tailwind
-  https://youtu.be/6omuUOZcWL0?si=qeuTfTgM3qjvcoUJ&t=13909
+  https://youtu.be/6omuUOZcWL0?si=2wRJxo8hbsH0eoxF&t=16203
 
 1 - overview shadcn ui tailwind 
   https://youtu.be/gjTxJT0WMiw?si=QezZGU1SP20gR6Qq&t=311

@@ -5,6 +5,7 @@ import { db } from "./db";
 import { Agency, AgencySidebarOption, Plan, Prisma, Role, SubAccount, SubAccountSidebarOption, User, } from "@prisma/client";
 import { redirect } from "next/navigation";
 import * as constants from "./constants"
+import { v4 } from "uuid";
 
 export type IGetAuthUserDetails = Prisma.UserGetPayload<{
   include: {
@@ -334,3 +335,93 @@ export const getNotificationAndUser = async (agencyId: string): Promise<IGetNoti
     return undefined;
   }
 };
+
+export const upsertSubAccount = async (subAccount: SubAccount): Promise<SubAccount | undefined | null> => {
+  if (!subAccount.companyEmail) return null;
+
+  const agencyOwner = await db.user.findFirst({
+    where: {
+      Agency: {
+        id: subAccount.agencyId,
+      },
+      role: "AGENCY_OWNER"
+    }
+  })
+
+  if (!agencyOwner) {
+    console.log("Error could not create subaccount")
+    return null;
+  };
+
+  console.log("upsert subaccount")
+  console.dir(subAccount, { depth: null })
+
+  const permissionId = v4();
+  const response = await db.subAccount.upsert({
+    where: { id: subAccount.id },
+    update: subAccount,
+    create: {
+      ...subAccount,
+      Permissions: {
+        create: {
+          access: true,
+          email: agencyOwner.email,
+          id: permissionId,
+        },
+        connect: {
+          subAccountId: subAccount.id, // uuidV4 é criado na tela de subaccount-details
+          id: permissionId
+        }
+      },
+      Pipeline: {
+        create: { name: "Lead Cycle" }
+      },
+      SidebarOption: {
+        create: [
+          {
+            name: 'Launchpad',
+            icon: 'clipboardIcon',
+            link: `/subaccount/${subAccount.id}/launchpad`,
+          },
+          {
+            name: 'Settings',
+            icon: 'settings',
+            link: `/subaccount/${subAccount.id}/settings`,
+          },
+          {
+            name: 'Funnels',
+            icon: 'pipelines',
+            link: `/subaccount/${subAccount.id}/funnels`,
+          },
+          {
+            name: 'Media',
+            icon: 'database',
+            link: `/subaccount/${subAccount.id}/media`,
+          },
+          {
+            name: 'Automations',
+            icon: 'chip',
+            link: `/subaccount/${subAccount.id}/automations`,
+          },
+          {
+            name: 'Pipelines',
+            icon: 'flag',
+            link: `/subaccount/${subAccount.id}/pipelines`,
+          },
+          {
+            name: 'Contacts',
+            icon: 'person',
+            link: `/subaccount/${subAccount.id}/contacts`,
+          },
+          {
+            name: 'Dashboard',
+            icon: 'category',
+            link: `/subaccount/${subAccount.id}`,
+          },
+        ],
+      },
+    }
+  })
+
+  return response;
+}

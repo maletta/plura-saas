@@ -27,3 +27,15 @@ Onde: src/components/sidebar/menu-options.tsx
 HOW TO FIX: Componente Command do shadcn ui utiliza a biblioteca cmdk que é instalada automaticamente na versão 1.0.0, é preciso dar downgrade para a versão 0.2.0 que é a versão utilizada no github do shadcn ui.
 
 -------------------
+
+BUG: mostrar scroll desnecessariamente em telas dentro da agência
+
+Onde: 
+http://localhost:3000/agency/[agencyId]
+http://localhost:3000/agency/[agencyId]/settings
+
+HOW TO FIX: Alterar o componente BlurPage, alterar a classeName overflow-scroll para algo overflow-auto
+
+Onde: src/components/global/blur-page.tsx
+
+--------------------------------

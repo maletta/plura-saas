@@ -2,7 +2,7 @@
 
 import { clerkClient, currentUser } from "@clerk/nextjs/server"
 import { db } from "./db";
-import { Agency, AgencySidebarOption, Plan, Prisma, Role, SubAccount, SubAccountSidebarOption, User, } from "@prisma/client";
+import { Agency, AgencySidebarOption, Permissions, Plan, Prisma, Role, SubAccount, SubAccountSidebarOption, User, } from "@prisma/client";
 import { redirect } from "next/navigation";
 import * as constants from "./constants"
 import { v4 } from "uuid";
@@ -424,4 +424,55 @@ export const upsertSubAccount = async (subAccount: SubAccount): Promise<SubAccou
   })
 
   return response;
+}
+
+
+export type IGetUserPermission = Prisma.UserGetPayload<{
+  select: { Permissions: { include: { SubAccount: true } } };
+}>;
+
+export const getUserPermissions = async (userId: string): Promise<IGetUserPermission | null> => {
+  const response = await db.user.findUnique({
+    where: { id: userId },
+    select: { Permissions: { include: { SubAccount: true } } },
+  })
+
+  return response
+}
+
+export const updateUser = async (user: Partial<User>): Promise<User> => {
+  const response = await db.user.update({
+    where: { email: user.email },
+    data: { ...user },
+  })
+
+  await clerkClient.users.updateUserMetadata(response.id, {
+    privateMetadata: {
+      role: user.role || 'SUBACCOUNT_USER',
+    },
+  })
+
+  return response
+}
+
+export const changeUserPermissions = async (
+  permissionId: string | undefined,
+  userEmail: string,
+  subAccountId: string,
+  permission: boolean
+): Promise<Permissions | undefined> => {
+  try {
+    const response = await db.permissions.upsert({
+      where: { id: permissionId },
+      update: { access: permission },
+      create: {
+        access: permission,
+        email: userEmail,
+        subAccountId: subAccountId,
+      },
+    })
+    return response
+  } catch (error) {
+    console.log('🔴Could not change persmission', error)
+  }
 }

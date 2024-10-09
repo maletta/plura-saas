@@ -1,7 +1,6 @@
 "use client";
 import { IGetNotificationAndUser } from '@/lib/queries';
 import { NotificationWithUser } from '@/lib/types';
-import { UserButton } from '@clerk/nextjs';
 import { Role } from '@prisma/client';
 import React, { useState } from 'react'
 import { twMerge } from 'tailwind-merge';
@@ -11,6 +10,7 @@ import { Card } from '../ui/card';
 import { Switch } from '../ui/switch';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { ModeToggle } from './mode-toggle';
+import { UserButton } from '@clerk/nextjs';
 
 interface IInfoBarProps {
   // notifications: NotificationWithUser[];
@@ -48,7 +48,7 @@ const InfoBar: React.FC<IInfoBarProps> = ({ notifications, subAccountId, classNa
         <div className="flex items-center gap-2 ml-auto">
           <UserButton afterSignOutUrl="/" />
           <Sheet>
-            <SheetTrigger>
+            <SheetTrigger >
               <div className="rounded-full w-9 h-9 bg-primary flex items-center justify-center text-white">
                 <Bell size={17} />
               </div>

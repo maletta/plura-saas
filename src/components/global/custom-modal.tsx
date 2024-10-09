@@ -1,8 +1,7 @@
 "use client";
 import { useModal } from "@/providers/modal-provider";
 import React, { PropsWithChildren } from "react";
-import { Dialog, DialogContent, DialogHeader } from "../ui/dialog";
-import { DialogDescription, DialogTitle } from "@radix-ui/react-dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "../ui/dialog";
 
 interface ICustomModalProps extends PropsWithChildren {
   title: string;

@@ -1,3 +1,7 @@
+Github do projeto do instrutor
+https://github.com/webprodigies/plura-production/tree/main
+
+
 1 - Bun
   É utilizado bun como plataforma para gerenciamento de pacotes do projeto
 
@@ -6,15 +10,26 @@ bunx create-next-app@latest .
 
 3 - É utilizado tailwind css para estilização dos componentes de design e tema da aplicação
 
-3 - É utilizado uploadthing para gerenciamento de arquivos
-https://uploadthing.com/dashboard/
+4 - É utilizado uploadthing para gerenciamento de arquivos
+  https://uploadthing.com/dashboard/
 
-4 - É utilizado shadcn ui para criar componentes de design da aplicação
+  instalar uploadthing como dependência do projeto
+
+  bun add uploadthing @uploadthing/react
+
+  definir as chaves de uploadthing no projeto
+
+  UPLOADTHING_SECRET=
+  UPLOADTHING_APP_ID=
+
+  aplicar a função withUt dentro de tailwind.config.ts
+
+5 - É utilizado shadcn ui para criar componentes de design da aplicação
 https://ui.shadcn.com/
 
 bunx --bun shadcn-ui@latest init add 
 
-opções
+opções de inialização e configuração do shadcn ui
   typescript
   base color default
   css file dir: src/app/globals.css
@@ -25,8 +40,55 @@ opções
   import alias for utils: @/lib/utils
   react server components: yes
   write configuration to components.json: yes
+
+
+instalando componentes no ambiente configurado acima:
+
+bunx --bun shadcn-ui@latest add 
+
+6 - É utilizado clerk para fazer autenticação
+https://clerk.com/
+
+  criamos uma aplicação no clerk e copiamos as chaves geradas para a aplicação:
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+    CLERK_SECRET_KEY
   
+  em seguida, iremos instalar o sdk de temas de cores do clerk
+    bun add @clerk/themes
+  
+  em seguida vamos instalar a biblioteca de autenticação do clerk
+    bun add @clerk/nextjs
 
+  também criaremos um arquivo chamado middleware na pasta src. Esse arquivo middleware é usado pelo clerk
+  para controlar quais rotas serão públicas e quais rotas serão autenticadas e o clerk fará  
+  o redirecionamento com base nessas informações e com base nas variáveis de ambiente definidas para redirecionamento
 
+7 - É utilizado a ferramenta de gradient.page pra montar um esquema de cores para shadcn ui
+https://gradient.page/tools/shadcn-ui-theme-generator
 
+8 - É utilizado bi.ibelick para conseguir background customizados para a aplicação com tailwind ou vanilla css
+  https://bg.ibelick.com/   
+
+9 - É utilizado prisma como gerenciador de banco de dados com typescript
+https://bun.sh/guides/ecosystem/prisma
+
+// instalar prisma e criar o arquivo de definição do banco de dados
+bun add @prisma/client
+bunx prisma init --datasource-provider mysql
+
+set env DATABASE_URL
+
+// gerar entidades no banco de dados, mas precisa de modelos de entidades criadas no typescript
+bunx prisma generate
+
+// bunx prisma db push
+para enviar a configuração do do arquivo schema.prisma ao banco de dados e criar as tabelas e seus relacionamentos
+
+  relationMode: "prisma" "foreignKey"
+    prisma - não cria chaves estrangeiras, não cria index automaticamente para propriedades de chaves estrangeiras, necessáio utilizar @@index manualmente
+
+    foreignKey - cria chaves estrangeiras e index automaticamente pra chave estrangeira
+
+// bunx prisma studio
+abre um client que sgbd para visualizar suas entidades
 

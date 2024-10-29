@@ -1,0 +1,41 @@
+Bug clerk de horário 
+Bug windows com internet vivo não sincroniza horário
+
+JWT cannot be used prior to not before date claim (nbf). Not before date: Fri, 23 Aug 2024 23:06:49 GMT; Current date: Fri, 23 Aug 2024 23:06:20 GMT; (reason=token-not-active-yet, token-carrier=cookie)
+Clerk: Clock skew detected. This usually means that your system clock is inaccurate. Clerk will attempt to account for the clock skew in development.
+
+To resolve this issue, make sure your system's clock is set to the correct time (e.g. turn off and on automatic time synchronization).
+
+-------------------
+
+HOW TO FIX: sincronizar horário do clerk com do WSL corretamente com:
+
+sudo apt install ntpdate && sudo ntpdate pool.ntp.org
+
+-------------------
+HOW TO FIX: sincronizar horário do windows com registros de servidores de horários brasileiros:
+
+https://suporte.ivancarlos.com.br/hc/pt-br/articles/22313315021197-Rel%C3%B3gio-do-sistema-operacional-n%C3%A3o-sincroniza-automaticamente-em-conex%C3%B5es-Vivo
+
+------------------
+
+
+BUG: Componente CommandItem não interage com ações do mouse de click e hover.
+
+Onde: src/components/sidebar/menu-options.tsx
+
+HOW TO FIX: Componente Command do shadcn ui utiliza a biblioteca cmdk que é instalada automaticamente na versão 1.0.0, é preciso dar downgrade para a versão 0.2.0 que é a versão utilizada no github do shadcn ui.
+
+-------------------
+
+BUG: mostrar scroll desnecessariamente em telas dentro da agência
+
+Onde: 
+http://localhost:3000/agency/[agencyId]
+http://localhost:3000/agency/[agencyId]/settings
+
+HOW TO FIX: Alterar o componente BlurPage, alterar a classeName overflow-scroll para algo overflow-auto
+
+Onde: src/components/global/blur-page.tsx
+
+--------------------------------
